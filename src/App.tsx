@@ -1,17 +1,28 @@
 import React from 'react'
 import './App.css'
-import {Route, Routes} from "react-router-dom"
-import Navbar from "./components/Navbar"
+// import {Route, Routes} from "react-router-dom"
+// import Navbar from "./components/Navbar"
+import Login from "./components/Login"
 
-function App() {
+interface AppProps {
+    firebase: any
+    auth: any
+    firestore: any
+}
+
+const App: React.FC<AppProps> = ({firebase, auth, firestore}) => {
+
+    console.log(firebase, auth, firestore)
+
     return (
-        <>
-            <Navbar/>
-            <Routes>
-                <Route path="/" element={<Navbar/>}/>
-            </Routes>
-        </>
+        <div>
+            {/*<Navbar/>*/}
+            {/*<Routes>*/}
+            {/*    <Route path="/" element={<Navbar/>}/>*/}
+            {/*</Routes>*/}
 
+            <Login />
+        </div>
     )
 }
 
