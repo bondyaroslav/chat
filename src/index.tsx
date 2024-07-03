@@ -4,11 +4,11 @@ import {Provider} from "react-redux"
 import {BrowserRouter as Router} from "react-router-dom"
 import setupStore from "./redux/store"
 import App from './App'
-import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
-initializeApp({
+firebase.initializeApp({
     apiKey: "AIzaSyBK1--eoYYzqBF_0AJXehMlNZuJQ46AVSw",
     authDomain: "chat-5f4d0.firebaseapp.com",
     projectId: "chat-5f4d0",
@@ -18,8 +18,8 @@ initializeApp({
     measurementId: "G-X7D4PWBZW1"
 })
 
-const auth = getAuth()
-const firestore = getFirestore()
+const auth = firebase.auth()
+const firestore = firebase.firestore()
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
