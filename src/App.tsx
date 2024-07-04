@@ -1,8 +1,9 @@
 import React from 'react'
 import './App.css'
-// import {Route, Routes} from "react-router-dom"
-// import Navbar from "./components/Navbar"
-import Login from "./components/Login"
+import Navbar from "./components/Navbar"
+import {useAppDispatch} from "./hooks/redux"
+import {addAuth, addFirestore} from "./redux/reducers/firebaseReducer"
+import AppRouter from "./components/AppRouter"
 
 interface AppProps {
     firebase: any
@@ -12,16 +13,15 @@ interface AppProps {
 
 const App: React.FC<AppProps> = ({firebase, auth, firestore}) => {
 
-    console.log(firebase, auth, firestore)
+    const dispatch = useAppDispatch()
+
+    dispatch(addAuth(auth))
+    dispatch(addFirestore(firestore))
 
     return (
         <div>
-            {/*<Navbar/>*/}
-            {/*<Routes>*/}
-            {/*    <Route path="/" element={<Navbar/>}/>*/}
-            {/*</Routes>*/}
-
-            <Login />
+            <Navbar/>
+            <AppRouter/>
         </div>
     )
 }
