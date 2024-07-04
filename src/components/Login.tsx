@@ -1,16 +1,27 @@
 import React, {useState} from 'react'
 import {Box, Button, TextField} from "@mui/material"
 import style from './Login.module.css'
+import {useSelector} from "react-redux"
+import {selectAuth} from "../redux/selectors/authSelector"
+import firebase from "firebase/compat/app"
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleEmailChange = (event: any) => {
+    const auth = useSelector(selectAuth)
+
+    const login = async () => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        const {user} = await auth.signInWithPopup(provider)
+        console.log(user)
+    }
+
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value)
     }
 
-    const handlePasswordChange = (event: any) => {
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
     }
 
@@ -24,7 +35,7 @@ const Login = () => {
                     type="email"
                     variant="outlined"
                     value={email}
-                    onChange={(event: any) => handleEmailChange(event)}
+                    onChange={handleEmailChange}
                     fullWidth
                 />
                 <TextField
@@ -33,15 +44,22 @@ const Login = () => {
                     type="password"
                     variant="outlined"
                     value={password}
-                    onChange={(event: any) => handlePasswordChange(event)}
+                    onChange={handlePasswordChange}
                     fullWidth
                 />
                 <Button className={style.button}
+                        sx={{marginBottom: 1}}
                         variant="contained"
                         color="primary"
                         onClick={() => {console.log(email, password)}}
                 >
                     Login
+                </Button>
+                <Button className={style.button}
+                        color="primary"
+                        onClick={login}
+                >
+                    Login with Google
                 </Button>
             </Box>
         </Box>
