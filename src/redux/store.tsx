@@ -1,22 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit"
-import { combineReducers } from "redux"
-import authReducer from "./reducers/authReducer"
+import { configureStore } from '@reduxjs/toolkit'
+import firebaseReducer from './reducers/firebaseReducer'
 
-const reducers = {
-    auth: authReducer
-}
-
-const rootReducer = combineReducers({
-    ...reducers
+const store = configureStore({
+    reducer: {
+        firebase: firebaseReducer
+    }
 })
 
-const setupStore = () => {
-    return configureStore({
-        reducer: rootReducer,
-    })
-}
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
-export type RootState = ReturnType<typeof rootReducer>
-export type AppStore = ReturnType<typeof setupStore>
-export type AppDispatch = AppStore["dispatch"]
-export default setupStore
+export default store
