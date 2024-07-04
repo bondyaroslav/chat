@@ -1,12 +1,34 @@
 import React from 'react'
-import {Link} from "react-router-dom"
 import style from './Navbar.module.css'
+import {useSelector} from "react-redux"
+import {selectAuth} from "../redux/selectors/authSelector"
+import {useAuthState} from "react-firebase-hooks/auth"
+import {Box, Button} from "@mui/material"
 
 const Navbar = () => {
-    return (
-        <nav className={style.Navbar}>
+    const auth = useSelector(selectAuth)
+    const [user] = useAuthState(auth)
 
-        </nav>
+    return (
+        <header className={style.Navbar}>
+            {user ?
+                (
+                    <Box className={style.wrapper}>
+                        <Box className={style.userData}>
+                            <img className={style.photo} src={user.photoURL || ''} alt="no photo"/>
+                            <p className={style.name}>{user.displayName}</p>
+                        </Box>
+                        <Button className={style.button}
+                                onClick={() => auth.signOut()}
+                        >
+                            Logout
+                        </Button>
+                    </Box>
+                )
+                :
+                null
+            }
+        </header>
     )
 }
 
