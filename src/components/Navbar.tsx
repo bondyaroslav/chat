@@ -18,7 +18,7 @@ const Navbar = () => {
                             <img className={style.photo} src={user.photoURL || ''} alt="no photo"/>
                             <p className={style.name}>{user.displayName}</p>
                         </Box>
-                        <Button className={style.button}
+                        <Button sx={{marginRight: 2}}
                                 onClick={() => auth.signOut()}
                         >
                             Logout

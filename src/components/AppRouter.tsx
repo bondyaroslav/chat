@@ -4,7 +4,7 @@ import {Navigate, Route, Routes} from "react-router-dom"
 import {CHAT_ROUTE, LOGIN_ROUTE} from "../utils/constants"
 import {useSelector} from "react-redux"
 import {selectAuth} from "../redux/selectors/authSelector"
-import {useAuthState} from "react-firebase-hooks/auth";
+import {useAuthState} from "react-firebase-hooks/auth"
 
 const AppRouter = () => {
     const auth = useSelector(selectAuth)
