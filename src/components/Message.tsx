@@ -1,10 +1,16 @@
 import React from 'react'
+import style from './Message.module.css'
+import {Box} from "@mui/material"
 
-const Message = () => {
+export interface IMessage {
+    text: string
+}
+
+const Message: React.FC<IMessage> = ({text}) => {
     return (
-        <div>
-            
-        </div>
+        <Box className={style.message}>
+            {text}
+        </Box>
     )
 }
 

@@ -5,7 +5,7 @@ const Loader = () => {
     return (
         <Container>
             <Grid container
-                  style={{height: window.innerHeight - 50}}
+                  style={{height: window.innerHeight - 100}}
                   alignItems={"center"}
                   justifyContent={"center"}
             >

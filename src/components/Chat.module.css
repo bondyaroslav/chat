@@ -1,0 +1,24 @@
+.Chat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 60%;
+    height: 80vh;
+    border: 3px solid #ECF0F1;
+    border-radius: 7px;
+    margin-top: 10px;
+}
+
+.messagesWrapper {
+    width: 100%;
+    height: 90%;
+}
+
+
+.input {
+
+}
+
+.button {
+
+}
