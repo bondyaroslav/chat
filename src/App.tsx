@@ -20,12 +20,11 @@ const App: React.FC<AppProps> = ({firebase, auth, firestore}) => {
 
     const [user, loading, error] = useAuthState(auth)
 
-    if (loading) {
-        return <Loader/>
-    }
+    if (loading) return <Loader/>
+    if (error) return <div>error</div>
 
     return (
-        <div>
+        <div >
             <Navbar/>
             <AppRouter/>
         </div>
