@@ -15,7 +15,7 @@ const Navbar = () => {
                 (
                     <Box className={style.wrapper}>
                         <Box className={style.userData}>
-                            <img className={style.photo} src={user.photoURL || ''} alt="no photo"/>
+                            <img className={style.photo} src={user.photoURL || ''} alt={user.displayName || 'User Photo'}/>
                             <p className={style.name}>{user.displayName}</p>
                         </Box>
                         <Button sx={{marginRight: 2}}

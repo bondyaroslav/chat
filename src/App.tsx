@@ -19,6 +19,7 @@ const App: React.FC<AppProps> = ({firebase, auth, firestore}) => {
     dispatch(addFirestore(firestore))
 
     const [user, loading, error] = useAuthState(auth)
+    console.log(user)
 
     if (loading) return <Loader/>
     if (error) return <div>error</div>
