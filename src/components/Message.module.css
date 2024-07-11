@@ -1,0 +1,24 @@
+.message {
+    display: flex;
+    min-width: 30vh;
+    max-width: 40vh;
+    min-height: 60px;
+    border: 1px solid #ECF0F1;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    word-break: break-all;
+}
+
+.userPhoto {
+    margin: 10px;
+}
+
+.userName {
+    margin-top: 10px;
+}
+
+.messageText {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
