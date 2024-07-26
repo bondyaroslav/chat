@@ -1,13 +1,23 @@
-import React from 'react'
-import style from './Navbar.module.css'
-import {useSelector} from "react-redux"
-import {selectAuth} from "../redux/selectors/authSelector"
-import {useAuthState} from "react-firebase-hooks/auth"
+'use client'
+import React, {useEffect, useState} from "react"
 import {Box, Button} from "@mui/material"
-
+import {auth} from "../../firebase/firebase"
+import style from './Navbar.module.css'
 const Navbar = () => {
-    const auth = useSelector(selectAuth)
-    const [user] = useAuthState(auth)
+
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(currentUser => {
+            setUser(currentUser)
+        })
+
+        return () => unsubscribe()
+    }, [])
+
+    const handleLogout = () => {
+        auth.signOut()
+    }
 
     return (
         <header className={style.Navbar}>
@@ -18,9 +28,7 @@ const Navbar = () => {
                             <img className={style.photo} src={user.photoURL || ''} alt="no photo"/>
                             <p className={style.name}>{user.displayName}</p>
                         </Box>
-                        <Button sx={{marginRight: 2}}
-                                onClick={() => auth.signOut()}
-                        >
+                        <Button sx={{marginRight: 2}} onClick={handleLogout}>
                             Logout
                         </Button>
                     </Box>
@@ -32,4 +40,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default React.memo(Navbar)
