@@ -3,17 +3,25 @@ import React, {useEffect, useRef, useState} from 'react'
 import style from './Chat.module.css'
 import {Box, TextField, Button} from "@mui/material"
 import {useCollectionData} from "react-firebase-hooks/firestore"
-import Message from "../../components/Message"
-import Loader from "../../components/Loader"
-import {auth, firestore} from "../../firebase"
+import {auth, firestore} from "../../firebase/firebase"
 import {collection, query, orderBy, addDoc, serverTimestamp} from 'firebase/firestore'
+import Message from "../../components/Message/Message"
+import Loader from "../../components/Loader"
 
 const Chat = () => {
     const [value, setValue] = useState('')
     const messagesQuery = query(collection(firestore, 'messages'), orderBy('createdAt'))
     const [messages, loading] = useCollectionData(messagesQuery)
     const endOfMessagesRef = useRef<HTMLDivElement | null>(null)
-    const user = auth.currentUser
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(currentUser => {
+            setUser(currentUser)
+        })
+
+        return () => unsubscribe()
+    }, [])
 
     const scrollToBottom = () => {
         endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -80,6 +88,12 @@ const Chat = () => {
                         placeholder="type message"
                         value={value}
                         onChange={handleInputChange}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                event.preventDefault()
+                                sendMessage()
+                            }
+                        }}
                         sx={{
                             flex: 1,
                             marginRight: '10px',

@@ -1,13 +1,13 @@
 'use client'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Box, Button, TextField} from "@mui/material"
 import style from './Login.module.css'
-import {auth, googleAuthProvider} from "../../firebase"
+import {auth, googleAuthProvider} from "../../firebase/firebase"
 import { signInWithPopup } from 'firebase/auth'
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
 
     const login = async () => {
         try {
@@ -19,44 +19,44 @@ const Login = () => {
         }
     }
 
-    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value)
-    }
-
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value)
-    }
+    // const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setEmail(event.target.value)
+    // }
+    //
+    // const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setPassword(event.target.value)
+    // }
 
     return (
         <Box className={style.loginPage}>
             <Box className={style.container}>
                 <h1 className={style.title}>Login</h1>
-                <TextField
-                    sx={{marginBottom: 1}}
-                    label="Email"
-                    type="email"
-                    variant="outlined"
-                    value={email}
-                    onChange={handleEmailChange}
-                    fullWidth
-                />
-                <TextField
-                    sx={{marginBottom: 1}}
-                    label="Password"
-                    type="password"
-                    variant="outlined"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    fullWidth
-                />
-                <Button className={style.button}
-                        sx={{marginBottom: 1}}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => {console.log(email, password)}}
-                >
-                    Login
-                </Button>
+                {/*<TextField*/}
+                {/*    sx={{marginBottom: 1}}*/}
+                {/*    label="Email"*/}
+                {/*    type="email"*/}
+                {/*    variant="outlined"*/}
+                {/*    value={email}*/}
+                {/*    onChange={handleEmailChange}*/}
+                {/*    fullWidth*/}
+                {/*/>*/}
+                {/*<TextField*/}
+                {/*    sx={{marginBottom: 1}}*/}
+                {/*    label="Password"*/}
+                {/*    type="password"*/}
+                {/*    variant="outlined"*/}
+                {/*    value={password}*/}
+                {/*    onChange={handlePasswordChange}*/}
+                {/*    fullWidth*/}
+                {/*/>*/}
+                {/*<Button className={style.button}*/}
+                {/*        sx={{marginBottom: 1}}*/}
+                {/*        variant="contained"*/}
+                {/*        color="primary"*/}
+                {/*        onClick={() => {console.log(email, password)}}*/}
+                {/*>*/}
+                {/*    Login*/}
+                {/*</Button>*/}
                 <Button className={style.button}
                         color="primary"
                         onClick={login}
